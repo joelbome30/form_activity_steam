@@ -12,12 +12,37 @@ const resumen = document.getElementById("resumen");
 // detecta cuando mandas el formulario y hace lo que esta dentro
 formulario.addEventListener("submit", async (event) => {
     event.preventDefault();
-    // coge todo los datos del formulario y los pone en la pagina que muestra el resultado
-    document.getElementById("resumen-nombre").textContent = document.getElementById("nombre").value.trim();
-    document.getElementById("resumen-correo").textContent = document.getElementById("correo").value.trim();
-    document.getElementById("resumen-contacto").textContent = document.getElementById("contacto-telefono").value.trim();
-    document.getElementById("resumen-curso").textContent = document.getElementById("sixseven").selectedOptions[0].textContent;
-    document.getElementById("resumen-mensaje").textContent = document.getElementById("mensaje").value.trim();
+    const botonEnviar = document.getElementById("btn");
+    const datosFormulario = {
+        nombre: document.getElementById("nombre").value.trim(),
+        correo: document.getElementById("correo").value.trim(),
+        contacto: document.getElementById("contacto-telefono").value.trim(),
+        curso: document.getElementById("sixseven").selectedOptions[0].textContent.trim(),
+        mensaje: document.getElementById("mensaje").value.trim()
+    };
+
+    botonEnviar.disabled = true;
+    botonEnviar.textContent = "Enviando...";
+
+    const { error } = await supabaseClient
+        .from("Inscripciones")
+        .insert([datosFormulario]);
+
+    botonEnviar.disabled = false;
+    botonEnviar.textContent = "Enviar!";
+
+    if (error) {
+        console.error("Error al guardar el formulario en Supabase:", error);
+        alert("No se pudo enviar el formulario. Revisa la conexión y vuelve a intentarlo.");
+        return;
+    }
+
+    // Muestra los mismos datos que se guardaron en Supabase.
+    document.getElementById("resumen-nombre").textContent = datosFormulario.nombre;
+    document.getElementById("resumen-correo").textContent = datosFormulario.correo;
+    document.getElementById("resumen-contacto").textContent = datosFormulario.contacto;
+    document.getElementById("resumen-curso").textContent = datosFormulario.curso;
+    document.getElementById("resumen-mensaje").textContent = datosFormulario.mensaje;
 
     // esconde el formulario y muestra el resumen
     formulario.hidden = true;
