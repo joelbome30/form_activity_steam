@@ -13,20 +13,31 @@ const resumen = document.getElementById("resumen");
 formulario.addEventListener("submit", async (event) => {
     event.preventDefault();
     const botonEnviar = document.getElementById("btn");
+    const nombre = document.getElementById("nombre").value.trim();
+    const correo = document.getElementById("correo").value.trim();
+    const contacto = document.getElementById("contacto-telefono").value.trim();
+    const curso = document.getElementById("sixseven").selectedOptions[0].textContent.trim();
+    const mensaje = document.getElementById("mensaje").value.trim();
     const datosFormulario = {
-        nombre: document.getElementById("nombre").value.trim(),
-        correo: document.getElementById("correo").value.trim(),
-        contacto: document.getElementById("contacto-telefono").value.trim(),
-        curso: document.getElementById("sixseven").selectedOptions[0].textContent.trim(),
-        mensaje: document.getElementById("mensaje").value.trim()
+        nombre,
+        correo,
+        contacto,
+        curso,
+        mensaje
     };
 
     botonEnviar.disabled = true;
     botonEnviar.textContent = "Enviando...";
 
-    const { error } = await supabaseClient
-        .from("Inscripciones")
-        .insert([datosFormulario]);
+    const { error } = await supabaseClient.from("Inscripciones").insert([
+        {
+            nombre,
+            correo,
+            contacto,
+            curso,
+            mensaje
+        }
+    ]);
 
     botonEnviar.disabled = false;
     botonEnviar.textContent = "Enviar!";
