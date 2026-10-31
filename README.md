@@ -46,7 +46,9 @@ button:active{
 ```
 
 en la parte de celulares hace todo mas pequeño si:
+```
 @media (max-width: 600px)
+```
 
 <---- script.js --->
 de la linea 1 al 7 conecta con supabase
@@ -61,7 +63,7 @@ el formulario con async para que espere a supabase
 
 dentro de la funcion agarra los datos del formulario y los envia
 a supabase con un await para que esperen a que se envie y no de error
-
+```
     const { error } = await supabaseClient.from("Inscripciones").insert([
         {
             nombre,
@@ -71,6 +73,6 @@ a supabase con un await para que esperen a que se envie y no de error
             mensaje
         }
     ]);
-
+```
 
 despues esconde el formulario y muestra el resumen.
