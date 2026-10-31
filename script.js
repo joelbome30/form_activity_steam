@@ -44,7 +44,6 @@ formulario.addEventListener("submit", async (event) => {
 
     if (error) {
         console.error("Error al guardar el formulario en Supabase:", error);
-        alert("No se pudo enviar el formulario. Revisa la conexión y vuelve a intentarlo.");
         return;
     }
 
