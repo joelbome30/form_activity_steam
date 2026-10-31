@@ -30,18 +30,20 @@ aca no hay mucha ciencia es un css normal
 lo unico que hay una pequeña animacion cuando presionas el boton.
 el hover cuando pasas el mouse por el se hace un poco mas claro con :hover
 cuando le das click se hace mas pequeño con:
-
+```
 button:hover{
     background-color: #2970fe;
 }
+```
 
 cuando le das click se hace mas pequeño con:
-
+```
 button:active{
     border-style: none;
     transform: scale(0.97);
     background-color: #588fff;
 }
+```
 
 en la parte de celulares hace todo mas pequeño si:
 @media (max-width: 600px)
