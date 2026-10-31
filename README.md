@@ -1,12 +1,12 @@
 Formulario Manual
 Estructura De la Pagina Web
-
+```
 /formulario
     -index.html -- pagina web
     -README.md -- documentacion
     -script.js -- funcionalidad
     -style.css -- estilos css
-
+```
 
 <--- index.html --->
 
