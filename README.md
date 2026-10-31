@@ -9,8 +9,10 @@ Estructura De la Pagina Web
 ```
 
 <--- index.html --->
-
-<html lang="es"> -- especifica lenguaje español
+```
+<html lang="es">
+```
+especifica lenguaje español
 
 linea 8-13 conecta con google fonts y el css
 
